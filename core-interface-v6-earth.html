@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Interface | Federal IT Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --green: #1c3a28;
+    --green-mid: #2a5438;
+    --green-light: #3a6e4a;
+    --amber: #c89040;
+    --amber-pale: #fdf7ee;
+    --cream: #faf8f3;
+    --cream2: #f3ede2;
+    --text: #1a2418;
+    --muted: #6a7860;
+    --border: #ddd5c4;
+  }
+  body { background: var(--cream); color: var(--text); font-family: 'Libre Franklin', system-ui, sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ── */
+  #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--green); transition: box-shadow 0.3s; }
+  #nav.scrolled { box-shadow: 0 4px 20px rgba(28,58,40,0.3); }
+  .nav-inner { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 14px; }
+  .nav-logo-badge {
+    width: 42px; height: 42px; background: var(--amber);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 14px;
+    color: var(--green); letter-spacing: 0.5px; flex-shrink: 0;
+  }
+  .nav-logo-text { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .nav-logo-sub { font-size: 9px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { color: var(--amber) !important; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+  .nav-dropdown > a .arrow { font-size: 8px; transition: transform 0.2s; }
+  .nav-dropdown:hover > a .arrow { transform: rotate(180deg); }
+  .dropdown-menu { display: none; position: absolute; top: calc(100% + 12px); right: 0; background: var(--cream); border: 1px solid var(--border); border-top: 3px solid var(--amber); min-width: 200px; padding: 8px 0; z-index: 200; box-shadow: 0 8px 30px rgba(28,58,40,0.12); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 10px 20px; font-size: 13px; color: var(--muted) !important; font-weight: 500 !important; transition: background 0.15s; }
+  .dropdown-menu a:hover { background: var(--amber-pale); color: var(--green) !important; }
+  .dropdown-menu .dm-highlight { color: var(--green-mid) !important; font-weight: 700 !important; border-top: 1px solid var(--border); }
+  .nav-cta { background: var(--amber) !important; color: var(--green) !important; padding: 9px 22px; font-size: 12px; font-weight: 800 !important; letter-spacing: 0.3px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: #dba852 !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.5); }
+
+  /* ── HERO ── */
+  #hero { background: var(--cream); min-height: 100vh; display: flex; align-items: center; padding: 9rem 2.5rem 4rem; position: relative; overflow: hidden; }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 28px 28px; opacity: 0.5;
+    pointer-events: none;
+  }
+  .hero-sidebar { position: absolute; right: 0; top: 0; bottom: 0; width: 45%; background: var(--green); clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%); pointer-events: none; }
+  .hero-inner { max-width: 1240px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; }
+  .hero-eye-dash { width: 40px; height: 2px; background: var(--amber); }
+  .hero-eye-text { font-size: 10px; color: var(--amber); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+  .hero-h1 { font-family: 'Fraunces', serif; font-size: clamp(3rem, 5.5vw, 4.8rem); font-weight: 900; color: var(--green); line-height: 1.0; letter-spacing: -1px; margin-bottom: 1.5rem; }
+  .hero-h1 .italic { font-style: italic; color: var(--green-light); }
+  .hero-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 480px; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-green { background: var(--green); color: #fff; padding: 14px 32px; border: none; font-family: 'Libre Franklin', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-green:hover { background: var(--green-mid); transform: translateY(-2px); }
+  .btn-amber { background: var(--amber); color: var(--green); padding: 14px 32px; border: none; font-family: 'Libre Franklin', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-amber:hover { background: #dba852; transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--green); padding: 14px 32px; border: 2px solid var(--green); font-family: 'Libre Franklin', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline:hover { background: rgba(28,58,40,0.06); transform: translateY(-2px); }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-card { background: var(--green); padding: 1.75rem; border-bottom: 3px solid var(--amber); }
+  .stat-card.light { background: var(--amber-pale); border-bottom-color: var(--green-light); }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 2.6rem; font-weight: 900; color: #fff; line-height: 1; }
+  .stat-num.dark { color: var(--green); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 6px; }
+  .stat-label.dark { color: var(--muted); }
+
+  /* ── SHARED ── */
+  section { padding: 5.5rem 2.5rem; }
+  .section-inner { max-width: 1240px; margin: 0 auto; }
+  .section-eyebrow { display: flex; align-items: center; gap: 12px; font-size: 10px; color: var(--amber); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.75rem; }
+  .section-eyebrow .dash { display: block; width: 24px; height: 2px; background: var(--amber); flex-shrink: 0; }
+  .section-h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--green); line-height: 1.1; }
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .amber-rule { width: 48px; height: 3px; background: var(--amber); margin: 1rem 0 2rem; }
+
+  /* ── ABOUT ── */
+  #about { background: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-visual {
+    background: var(--green);
+    min-height: 480px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1.5rem; padding: 3rem;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(200,144,64,0.15), transparent 60%); pointer-events: none; }
+  .about-big-num { font-family: 'Fraunces', serif; font-size: 6rem; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; letter-spacing: -4px; position: absolute; top: 1rem; right: 1.5rem; }
+  .about-visual-stat { text-align: center; position: relative; z-index: 1; padding: 1.5rem 2rem; border: 1px solid rgba(255,255,255,0.1); width: 100%; }
+  .avs-num { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--amber); font-weight: 900; line-height: 1; }
+  .avs-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .about-text p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 1rem; }
+  .about-text p:last-of-type { margin-bottom: 2rem; }
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .about-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+  .about-list li:last-child { border-bottom: none; }
+  .list-amber-dot { width: 8px; height: 8px; background: var(--amber); flex-shrink: 0; margin-top: 7px; }
+  .list-title { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+  .list-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── CAPABILITIES ── */
+  #capabilities { background: var(--cream2); }
+  .cap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); }
+  .cap-card { background: var(--cream); padding: 2rem 1.75rem; border-top: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .cap-card:hover { border-top-color: var(--amber); background: #fff; }
+  .cap-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--amber); margin-bottom: 0.75rem; }
+  .cap-title { font-size: 15px; font-weight: 800; color: var(--green); margin-bottom: 0.75rem; }
+  .cap-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .cap-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .cap-tag { font-size: 10px; padding: 3px 10px; background: var(--amber-pale); color: var(--green-mid); font-weight: 700; border-radius: 2px; letter-spacing: 0.3px; }
+
+  /* ── CAP STATEMENT ── */
+  #cap-online { background: var(--green); }
+  .cap-online-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .cap-dl-card { border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .cap-dl-eyebrow { font-size: 9px; color: var(--amber); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+  .cap-dl-title { font-family: 'Fraunces', serif; font-size: 2rem; color: #fff; line-height: 1.15; }
+  .cap-dl-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.75; }
+  .cap-dl-meta { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: auto; }
+  .cap-naics { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+  .naics-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .naics-title { font-family: 'Fraunces', serif; font-size: 1.15rem; color: #fff; }
+  .naics-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+  .naics-row { display: flex; justify-content: space-between; padding: 9px 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center; }
+  .naics-row:last-child { border-bottom: none; }
+  .naics-code { color: var(--amber); font-weight: 700; font-family: monospace; font-size: 13px; }
+  .naics-name { font-size: 12px; color: rgba(255,255,255,0.35); text-align: right; }
+
+  /* ── CONTRACTS ── */
+  #contracts { background: var(--amber-pale); padding: 4.5rem 2.5rem; border-top: 3px solid var(--amber); border-bottom: 3px solid var(--amber); }
+  .certs-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.75rem; }
+  .cert-pill { border: 1.5px solid var(--border); padding: 10px 22px; font-size: 12px; font-weight: 700; color: var(--green-mid); letter-spacing: 0.5px; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+  .cert-pill:hover { background: var(--green); color: #fff; border-color: var(--green); }
+
+  /* ── CAREERS ── */
+  #careers { background: var(--cream); }
+  .careers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .careers-text p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .careers-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .perks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .perk { background: var(--amber-pale); padding: 1.5rem; border-left: 3px solid var(--amber); }
+  .perk-icon { font-size: 22px; margin-bottom: 10px; }
+  .perk-title { font-size: 13px; font-weight: 800; color: var(--green); margin-bottom: 4px; }
+  .perk-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+  /* ── CONTACT ── */
+  #contact { background: #fff; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+  .contact-info p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; font-size: 14px; color: var(--muted); }
+  .contact-detail strong { color: var(--green); font-weight: 700; }
+  .contact-form-wrap { background: var(--cream); border: 1px solid var(--border); border-top: 3px solid var(--green); padding: 2.5rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-mid); font-weight: 700; }
+  .form-group input, .form-group textarea, .form-group select { background: #fff; border: 1.5px solid var(--border); padding: 12px 16px; color: var(--text); font-family: 'Libre Franklin', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--green); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--green); padding: 3.5rem 2.5rem 2rem; }
+  .footer-inner { max-width: 1240px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 260px; margin-top: 1rem; }
+  .footer-col h4 { font-size: 9px; color: var(--amber); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.28); margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: rgba(255,255,255,0.65); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(255,255,255,0.2); flex-wrap: wrap; gap: 0.5rem; }
+  .footer-meta { display: flex; gap: 2rem; }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .hero-inner, .about-grid, .careers-grid, .contact-grid, .cap-online-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-sidebar { display: none; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .cap-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .cap-grid, .footer-top, .perks-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+    .hero-actions, .careers-actions { flex-direction: column; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-badge">CI</div>
+      <div>
+        <div class="nav-logo-text">Core Interface</div>
+        <div class="nav-logo-sub">Federal IT Solutions</div>
+      </div>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#contracts">Contracts</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-dropdown">
+          <a>Employee Portal <span class="arrow">▾</span></a>
+          <div class="dropdown-menu">
+            <a href="https://unanet.biz" target="_blank">Time &amp; Expense</a>
+            <a href="https://access.paylocity.com" target="_blank">HR System</a>
+            <a href="#" class="dm-highlight">Intranet ↗</a>
+          </div>
+        </li>
+        <li><a href="https://your-job-board-link.com" target="_blank" class="nav-cta">Open Positions →</a></li>
+      </ul>
+      <div class="nav-hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+    </nav>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-sidebar"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><div class="hero-eye-dash"></div><div class="hero-eye-text">Federal Technology Partner · Est. 2010</div></div>
+      <h1 class="hero-h1">Trusted.<br><span class="italic">Cleared.</span><br>Delivered.</h1>
+      <p class="hero-desc">Core Interface provides cleared IT professionals, software development, and cybersecurity expertise purpose-built for the demands of the federal government.</p>
+      <div class="hero-actions">
+        <a href="#capabilities" class="btn-green">Explore Capabilities</a>
+        <button class="btn-amber" onclick="downloadCapStatement()">⬇ Cap Statement</button>
+      </div>
+    </div>
+    <div class="hero-stats fade-in">
+      <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-card light"><div class="stat-num dark">200+</div><div class="stat-label dark">Cleared Professionals</div></div>
+      <div class="stat-card light"><div class="stat-num dark">40+</div><div class="stat-label dark">Active Contracts</div></div>
+      <div class="stat-card"><div class="stat-num">99%</div><div class="stat-label">Client Retention</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid fade-in">
+      <div class="about-visual">
+        <div class="about-big-num">15</div>
+        <div class="about-visual-stat"><div class="avs-num">15+</div><div class="avs-label">Years of Federal Service</div></div>
+        <div class="about-visual-stat"><div class="avs-num">200+</div><div class="avs-label">Cleared Professionals</div></div>
+        <div class="about-visual-stat"><div class="avs-num">40+</div><div class="avs-label">Active Contracts</div></div>
+      </div>
+      <div class="about-text">
+        <div class="section-eyebrow"><span class="dash"></span>About Core Interface</div>
+        <h2 class="section-h2">Trusted Partner.<br>Proven Results.</h2>
+        <div class="amber-rule"></div>
+        <p>Core Interface is a veteran-owned small business providing comprehensive IT services, technology solutions, and cleared professional services to federal agencies across DoD, civilian, and intelligence communities.</p>
+        <p>Our team brings deep technical expertise, proven delivery methodologies, and a genuine mission-first commitment to every engagement — whether rapid deployment or a multi-year enterprise program.</p>
+        <a href="#contact" class="btn-green" style="display:inline-flex;margin-top:0.5rem;">Get In Touch</a>
+        <ul class="about-list" style="margin-top:2rem;">
+          <li><div class="list-amber-dot"></div><div><div class="list-title">Veteran-Owned &amp; Operated</div><div class="list-desc">Founded and led by military veterans who understand mission-first culture from the inside.</div></div></li>
+          <li><div class="list-amber-dot"></div><div><div class="list-title">Cleared Workforce</div><div class="list-desc">Full-time cleared staff holding Secret through TS/SCI, ready for immediate deployment.</div></div></li>
+          <li><div class="list-amber-dot"></div><div><div class="list-title">Federal-Only Focus</div><div class="list-desc">100% of our work supports federal agency missions — not a commercial firm dabbling in government.</div></div></li>
+          <li><div class="list-amber-dot"></div><div><div class="list-title">Agile Delivery</div><div class="list-desc">SAFe and Scrum-certified teams delivering working software every sprint, every time.</div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-head fade-in">
+      <div><div class="section-eyebrow"><span class="dash"></span>Core Capabilities</div><h2 class="section-h2">What We Deliver</h2></div>
+      <button class="btn-amber" onclick="downloadCapStatement()">⬇ Download Statement</button>
+    </div>
+    <div class="cap-grid fade-in">
+      <div class="cap-card"><div class="cap-num">I. IT Modernization</div><div class="cap-title">Cloud Migration &amp; Digital Transformation</div><div class="cap-desc">Cloud migration, legacy transformation, and infrastructure modernization. AWS GovCloud, Azure Government, and hybrid-cloud architectures built to federal security standards.</div><div class="cap-tags"><span class="cap-tag">Cloud</span><span class="cap-tag">DevSecOps</span><span class="cap-tag">Modernization</span></div></div>
+      <div class="cap-card"><div class="cap-num">II. Cybersecurity</div><div class="cap-title">Security Engineering &amp; Compliance</div><div class="cap-desc">NIST 800-53/171, CMMC Level 2 frameworks, zero-trust architecture, continuous monitoring, penetration testing, and incident response for DoD and civilian agencies.</div><div class="cap-tags"><span class="cap-tag">CMMC</span><span class="cap-tag">NIST</span><span class="cap-tag">RMF</span></div></div>
+      <div class="cap-card"><div class="cap-num">III. Software Development</div><div class="cap-title">Custom Applications &amp; Integration</div><div class="cap-desc">Agile custom application development and enterprise systems integration for mission-critical operations. SAFe-certified teams delivering production-ready software.</div><div class="cap-tags"><span class="cap-tag">Agile</span><span class="cap-tag">Full-Stack</span><span class="cap-tag">API</span></div></div>
+      <div class="cap-card"><div class="cap-num">IV. Program Management</div><div class="cap-title">Federal Program &amp; Project Delivery</div><div class="cap-desc">PMP-certified professionals managing complex programs with earned value management, risk mitigation, and transparent reporting to agency leadership.</div><div class="cap-tags"><span class="cap-tag">PMP</span><span class="cap-tag">EVM</span><span class="cap-tag">PMBOK</span></div></div>
+      <div class="cap-card"><div class="cap-num">V. Data &amp; Analytics</div><div class="cap-title">AI/ML &amp; Business Intelligence</div><div class="cap-desc">Data engineering, AI/ML development, and BI platforms delivering actionable intelligence for federal decision-makers and agency leadership.</div><div class="cap-tags"><span class="cap-tag">AI/ML</span><span class="cap-tag">Power BI</span><span class="cap-tag">NLP</span></div></div>
+      <div class="cap-card"><div class="cap-num">VI. Managed IT &amp; Help Desk</div><div class="cap-title">Enterprise Support &amp; Operations</div><div class="cap-desc">Tier 1–3 managed support and 24/7 help desk operations for federal agency networks aligned to ITIL best practices.</div><div class="cap-tags"><span class="cap-tag">ITSM</span><span class="cap-tag">ITIL</span><span class="cap-tag">24/7</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="cap-online">
+  <div class="section-inner fade-in">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" style="color:var(--amber);"><span class="dash" style="background:var(--amber);display:block;width:24px;height:2px;"></span>Capabilities Statement</div>
+        <h2 class="section-h2" style="color:#fff;">Full Capability Profile</h2>
+      </div>
+    </div>
+    <div class="cap-online-grid">
+      <div class="cap-dl-card">
+        <div class="cap-dl-eyebrow">Official Document</div>
+        <div class="cap-dl-title">Download Capabilities<br><em style="font-style:italic;">Statement</em></div>
+        <div class="cap-dl-desc">Official Capabilities Statement PDF for procurement, teaming, and acquisition. Includes NAICS codes, UEI, CAGE, contract vehicles, and certifications.</div>
+        <button class="btn-amber" onclick="downloadCapStatement()">⬇ Download PDF</button>
+        <div class="cap-dl-meta">Updated January 2025 · 2 pages</div>
+      </div>
+      <div class="cap-naics">
+        <div class="naics-header"><div class="naics-title">NAICS Codes &amp; Identifiers</div><div class="naics-sub">Primary procurement classifications</div></div>
+        <div class="naics-row"><span class="naics-code">541511</span><span class="naics-name">Custom Computer Programming</span></div>
+        <div class="naics-row"><span class="naics-code">541512</span><span class="naics-name">Computer Systems Design</span></div>
+        <div class="naics-row"><span class="naics-code">541513</span><span class="naics-name">Computer Facilities Management</span></div>
+        <div class="naics-row"><span class="naics-code">541519</span><span class="naics-name">Other Computer-Related Services</span></div>
+        <div class="naics-row"><span class="naics-code">541690</span><span class="naics-name">Scientific/Technical Consulting</span></div>
+        <div class="naics-row"><span class="naics-code">518210</span><span class="naics-name">Data Processing &amp; Hosting</span></div>
+        <div class="naics-row" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;"><span style="font-size:11px;color:rgba(255,255,255,0.25);">CAGE Code</span><span style="color:var(--amber);font-family:monospace;font-weight:700;">XXXXX</span></div>
+        <div class="naics-row"><span style="font-size:11px;color:rgba(255,255,255,0.25);">UEI</span><span style="color:var(--amber);font-family:monospace;font-weight:700;">XXXXXXXXXXXXXXXX</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contracts">
+  <div style="max-width:1240px;margin:0 auto;">
+    <div class="section-eyebrow"><span class="dash"></span>Contract Vehicles &amp; Certifications</div>
+    <h2 class="section-h2" style="margin-bottom:0.5rem;">How to Work With Us</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:0.75rem;margin-bottom:2rem;">Core Interface holds multiple contract vehicles to simplify acquisition for federal agency partners.</p>
+    <div class="certs-row">
+      <div class="cert-pill">GSA MAS</div><div class="cert-pill">SEWP V</div><div class="cert-pill">8(a) Certified</div><div class="cert-pill">CMMC Level 2</div><div class="cert-pill">ISO 9001:2015</div><div class="cert-pill">Secret Clearance</div><div class="cert-pill">TS/SCI Eligible</div><div class="cert-pill">SDVOSB</div>
+    </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="section-inner">
+    <div class="careers-grid fade-in">
+      <div class="careers-text">
+        <div class="section-eyebrow"><span class="dash"></span>Join Our Team</div>
+        <h2 class="section-h2" style="margin-bottom:0.5rem;">Work That<br>Matters.</h2>
+        <div class="amber-rule"></div>
+        <p>We're always looking for talented, cleared professionals who want their technical skills to support the nation's most critical missions.</p>
+        <div class="careers-actions">
+          <a href="https://your-job-board-link.com" target="_blank" class="btn-green">View Open Positions →</a>
+          <a href="#contact" class="btn-outline">Recruiting Inquiry</a>
+        </div>
+      </div>
+      <div class="perks-grid">
+        <div class="perk"><div class="perk-icon">💰</div><div class="perk-title">Competitive Pay</div><div class="perk-desc">Market-leading comp benchmarked to the cleared community.</div></div>
+        <div class="perk"><div class="perk-icon">🏥</div><div class="perk-title">Full Benefits</div><div class="perk-desc">Medical, dental, vision, and 401(k) with company match.</div></div>
+        <div class="perk"><div class="perk-icon">🎓</div><div class="perk-title">Training &amp; Certs</div><div class="perk-desc">Funded certifications and professional development.</div></div>
+        <div class="perk"><div class="perk-icon">🌐</div><div class="perk-title">Flexible Work</div><div class="perk-desc">Remote-friendly where programs allow.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner fade-in">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-eyebrow"><span class="dash"></span>Contact Us</div>
+        <h2 class="section-h2" style="margin-bottom:0.5rem;">Let's Talk About<br>Your Mission.</h2>
+        <div class="amber-rule"></div>
+        <p>Contracting officer, teaming partner, or potential hire — our team responds within one business day.</p>
+        <div class="contact-detail"><span>📧</span><span><strong>info@core-interface.com</strong></span></div>
+        <div class="contact-detail"><span>📞</span><span><strong>(XXX) XXX-XXXX</strong></span></div>
+        <div class="contact-detail"><span>📍</span><span><strong>Washington, DC Metro Area</strong></span></div>
+        <div class="contact-detail"><span>🕐</span><span>Mon–Fri, 8:00 AM – 6:00 PM ET</span></div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" onsubmit="handleForm(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="John" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+          </div>
+          <div class="form-group"><label>Organization</label><input type="text" placeholder="Agency / Company"></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@agency.gov" required></div>
+          <div class="form-group"><label>Inquiry Type</label><select><option value="">Select one…</option><option>Contract / Procurement</option><option>Teaming / Partnership</option><option>Employment / Recruiting</option><option>General Inquiry</option></select></div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your need or opportunity…"></textarea></div>
+          <button type="submit" class="btn-green" style="justify-content:center;width:100%;padding:14px;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:1rem;">
+          <div style="width:42px;height:42px;background:var(--amber);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:14px;color:var(--green);">CI</div>
+          <div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#fff;">Core Interface</div><div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;">Federal IT Solutions</div></div>
+        </div>
+        <p>Providing cleared IT talent, software development, and cybersecurity services to the federal government since 2010.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="#about">About Us</a><a href="#capabilities">Capabilities</a><a href="#contracts">Contracts</a><a href="#contact">Contact</a></div>
+      <div class="footer-col"><h4>Services</h4><a href="#capabilities">IT Modernization</a><a href="#capabilities">Cybersecurity</a><a href="#capabilities">Software Dev</a><a href="#capabilities">Data &amp; Analytics</a></div>
+      <div class="footer-col"><h4>Employee</h4><a href="https://unanet.biz" target="_blank">Time &amp; Expense</a><a href="https://access.paylocity.com" target="_blank">HR System</a><a href="#">Intranet</a><a href="https://your-job-board-link.com" target="_blank">Careers</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Core Interface, Inc. · All Rights Reserved · CAGE: XXXXX · UEI: XXXXXXXXXXXXXXXX</span>
+      <div class="footer-meta"><a href="#" style="color:rgba(255,255,255,0.2);">Privacy Policy</a><a href="#" style="color:rgba(255,255,255,0.2);">Accessibility</a><a href="#" style="color:rgba(255,255,255,0.2);">SAM.gov</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40); });
+  const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  function toggleMobile() {
+    const l = document.querySelector('.nav-links');
+    const open = l.style.display === 'flex';
+    l.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:var(--green);padding:1rem 2rem;gap:0.75rem;border-bottom:1px solid rgba(255,255,255,0.08);z-index:100;';
+  }
+  function downloadCapStatement() { alert('Update downloadCapStatement() to point to your PDF:\nwindow.location = "/files/core-interface-capabilities.pdf"'); }
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-mid)';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>

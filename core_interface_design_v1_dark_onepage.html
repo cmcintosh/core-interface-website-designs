@@ -1,0 +1,124 @@
+
+<h2 class="sr-only">Design Variation 1 — Dark One-Page Landing for Core Interface</h2>
+<style>
+.v1 *{box-sizing:border-box;margin:0;padding:0}
+.v1 a{text-decoration:none;cursor:pointer}
+.v1 .drop{display:none;position:absolute;top:100%;right:0;background:#0d2244;border:1px solid rgba(61,145,230,0.25);border-radius:6px;min-width:170px;padding:6px 0;z-index:20}
+.v1 .has-drop:hover .drop{display:block}
+.v1 .drop-item{padding:9px 16px;font-size:12px;color:#8aabcc;cursor:pointer;transition:background 0.15s}
+.v1 .drop-item:hover{background:rgba(61,145,230,0.12);color:#3d91e6}
+.v1 .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(61,145,230,0.12)}
+.v1 .cap-cell{background:#091629;padding:1.5rem}
+.v1 .cert-pill{border:1px solid rgba(61,145,230,0.25);border-radius:5px;padding:10px 18px;font-size:12px;color:#6a8fb8;white-space:nowrap}
+.v1 ::-webkit-scrollbar{width:4px}
+.v1 ::-webkit-scrollbar-track{background:#0b1a2e}
+.v1 ::-webkit-scrollbar-thumb{background:#1e3d66}
+</style>
+
+<div style="border-radius:10px;overflow:hidden;border:0.5px solid var(--color-border-secondary);">
+  <div style="background:#252526;padding:8px 14px;display:flex;align-items:center;gap:10px;">
+    <div style="display:flex;gap:5px;align-items:center;">
+      <div style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></div>
+      <div style="width:11px;height:11px;border-radius:50%;background:#ffbd2e"></div>
+      <div style="width:11px;height:11px;border-radius:50%;background:#28c841"></div>
+    </div>
+    <div style="flex:1;background:#3c3c3c;border-radius:4px;padding:3px 12px;font-size:11px;color:#888;font-family:monospace;">core-interface.com</div>
+    <div style="font-size:10px;color:#555;padding:2px 8px;border:1px solid #3c3c3c;border-radius:3px;">V1 — Dark One-Page</div>
+  </div>
+
+  <div class="v1" style="background:#0b1a2e;color:#d0dff0;font-family:'Segoe UI',system-ui,sans-serif;overflow-y:auto;max-height:700px;">
+
+    <!-- NAV -->
+    <nav style="background:rgba(11,26,46,0.97);border-bottom:1px solid rgba(61,145,230,0.18);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:66px;position:sticky;top:0;z-index:10;backdrop-filter:blur(0);">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:34px;height:34px;background:#3d91e6;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#0b1a2e;letter-spacing:0.5px;">CI</div>
+        <span style="font-size:15px;font-weight:700;letter-spacing:0.5px;color:#fff;text-transform:uppercase;">Core Interface</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:2rem;font-size:13px;">
+        <a style="color:#9ab5d0;">About</a>
+        <a style="color:#9ab5d0;">Capabilities</a>
+        <a style="color:#9ab5d0;">Contracts</a>
+        <a style="color:#9ab5d0;">Careers</a>
+        <div class="has-drop" style="position:relative;">
+          <a style="color:#3d91e6;display:flex;align-items:center;gap:5px;">Employee Portal <span style="font-size:9px;">▾</span></a>
+          <div class="drop">
+            <div class="drop-item">Time &amp; Expense</div>
+            <div class="drop-item">HR System</div>
+            <div class="drop-item" style="color:#3d91e6;border-top:1px solid rgba(255,255,255,0.06);">Intranet</div>
+          </div>
+        </div>
+        <a style="background:#3d91e6;color:#0b1a2e;padding:7px 18px;border-radius:4px;font-size:12px;font-weight:700;">Join Our Team →</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section style="padding:5rem 2.5rem 4rem;max-width:960px;margin:0 auto;">
+      <div style="font-size:10px;letter-spacing:2.5px;color:#3d91e6;text-transform:uppercase;margin-bottom:1rem;font-weight:600;">Federal IT Solutions &amp; Technology Services</div>
+      <h1 style="font-size:3.4rem;font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:#fff;margin-bottom:1.5rem;">Delivering Mission-<br>Critical IT, Secured.</h1>
+      <p style="font-size:1.05rem;color:#7a9dbd;max-width:500px;line-height:1.75;margin-bottom:2.5rem;">Core Interface provides cleared IT professionals, software development, and cybersecurity solutions purpose-built for the federal government.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button style="background:#3d91e6;color:#0b1a2e;padding:13px 30px;border:none;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.3px;">Explore Capabilities</button>
+        <button style="background:transparent;color:#3d91e6;padding:13px 30px;border:1px solid rgba(61,145,230,0.38);border-radius:5px;font-size:13px;cursor:pointer;">⬇ Download Cap Statement</button>
+      </div>
+      <div style="display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.07);">
+        <div><div style="font-size:2rem;font-weight:800;color:#fff;">15+</div><div style="font-size:11px;color:#6a8fb8;margin-top:2px;letter-spacing:0.5px;">Years Experience</div></div>
+        <div><div style="font-size:2rem;font-weight:800;color:#fff;">200+</div><div style="font-size:11px;color:#6a8fb8;margin-top:2px;letter-spacing:0.5px;">Cleared Professionals</div></div>
+        <div><div style="font-size:2rem;font-weight:800;color:#fff;">40+</div><div style="font-size:11px;color:#6a8fb8;margin-top:2px;letter-spacing:0.5px;">Active Contracts</div></div>
+        <div><div style="font-size:2rem;font-weight:800;color:#fff;">99%</div><div style="font-size:11px;color:#6a8fb8;margin-top:2px;letter-spacing:0.5px;">Client Retention</div></div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section style="padding:0 0 3rem;">
+      <div style="max-width:960px;margin:0 auto;padding:0 2.5rem 1.5rem;">
+        <div style="font-size:10px;letter-spacing:2.5px;color:#3d91e6;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">What We Do</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <h2 style="font-size:1.9rem;font-weight:700;color:#fff;">Core Capabilities</h2>
+          <button style="background:transparent;color:#3d91e6;padding:8px 18px;border:1px solid rgba(61,145,230,0.35);border-radius:4px;font-size:12px;cursor:pointer;">⬇ Full Cap Statement</button>
+        </div>
+      </div>
+      <div style="max-width:960px;margin:0 auto;padding:0 2.5rem;">
+        <div class="cap-grid">
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">01</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">IT Modernization</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">Cloud migration, legacy system transformation, and digital modernization for federal agencies.</div></div>
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">02</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">Cybersecurity</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">Zero-trust architecture, NIST/CMMC compliance, and continuous security monitoring.</div></div>
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">03</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">Software Development</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">Agile full-stack development and systems integration for mission-critical environments.</div></div>
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">04</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">Program Management</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">PMP-certified professionals delivering on-time, on-budget federal program execution.</div></div>
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">05</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">Data &amp; Analytics</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">AI/ML, BI, and data engineering solutions delivering actionable government intelligence.</div></div>
+          <div class="cap-cell"><div style="font-size:9px;letter-spacing:2px;color:#3d91e6;margin-bottom:10px;font-weight:600;">06</div><div style="font-size:14px;font-weight:700;color:#e0ecff;margin-bottom:8px;">Managed IT &amp; Help Desk</div><div style="font-size:12px;color:#5a7fa0;line-height:1.65;">Tier 1–3 managed support services and service desk operations for federal networks.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTRACTS -->
+    <section style="background:#091629;padding:2.5rem 2.5rem;">
+      <div style="max-width:960px;margin:0 auto;">
+        <div style="font-size:10px;letter-spacing:2.5px;color:#3d91e6;text-transform:uppercase;font-weight:600;margin-bottom:1.2rem;">Vehicles &amp; Certifications</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div class="cert-pill">GSA MAS</div>
+          <div class="cert-pill">SEWP V</div>
+          <div class="cert-pill">8(a) Certified</div>
+          <div class="cert-pill">CMMC Level 2</div>
+          <div class="cert-pill">ISO 9001:2015</div>
+          <div class="cert-pill">Secret Clearance</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREERS CTA -->
+    <section style="padding:4rem 2.5rem;text-align:center;">
+      <div style="max-width:600px;margin:0 auto;">
+        <div style="font-size:10px;letter-spacing:2.5px;color:#3d91e6;text-transform:uppercase;font-weight:600;margin-bottom:0.75rem;">Join Our Team</div>
+        <h2 style="font-size:2.2rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:1rem;">Work That Matters.</h2>
+        <p style="color:#6a8fb8;margin-bottom:2rem;font-size:0.95rem;line-height:1.7;">We seek cleared, talented professionals ready to support the nation's most critical missions.</p>
+        <a style="background:#3d91e6;color:#0b1a2e;padding:13px 36px;border-radius:5px;font-size:13px;font-weight:700;display:inline-block;">View Open Positions →</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="border-top:1px solid rgba(255,255,255,0.06);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#3a5a7a;">
+      <span>© 2025 Core Interface, Inc. · CAGE: XXXXX · DUNS: XXXXXXXXX</span>
+      <div style="display:flex;gap:1.5rem;"><a style="color:#3a5a7a;">Privacy</a><a style="color:#3a5a7a;">Contact</a><a style="color:#3a5a7a;">Accessibility</a></div>
+    </footer>
+
+  </div>
+</div>

@@ -59,8 +59,8 @@
   .dropdown-menu { display: none; position: absolute; top: calc(100% + 12px); right: 0; background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--primary); min-width: 200px; padding: 8px 0; z-index: 200; box-shadow: 0 8px 30px rgba(26,36,58,0.12); }
   .nav-dropdown:hover .dropdown-menu { display: block; }
   .dropdown-menu a { display: block; padding: 10px 20px; font-size: 13px; color: var(--text-muted) !important; font-weight: 500 !important; transition: background 0.15s, color 0.15s; }
-  .dropdown-menu a:hover { background: var(--primary-pale); color: var(--primary) !important; }
-  .dropdown-menu .dm-highlight { color: var(--primary) !important; font-weight: 700 !important; border-top: 1px solid var(--border); }
+  .dropdown-menu a:hover { background: var(--accent-pale); color: var(--accent) !important; }
+  .dropdown-menu .dm-highlight { color: var(--accent) !important; font-weight: 700 !important; border-top: 1px solid var(--border); }
   .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 8px 22px; font-size: 12px; font-weight: 700 !important; letter-spacing: 0.3px; transition: background 0.2s !important; border-radius: 4px; }
   .nav-cta:hover { background: var(--accent-light) !important; }
   .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
@@ -93,12 +93,12 @@
   .stat-num { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; color: #fff; line-height: 1; }
   .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.8px; margin-top: 5px; text-transform: uppercase; }
   .hero-right-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 8px; }
-  .panel-label { font-size: 9px; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 700; }
+  .panel-label { font-size: 9px; color: rgba(255,255,255,0.7); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 700; }
   .panel-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .panel-item:last-child { border-bottom: none; }
   .pi-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; }
   .pi-value { font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 600; text-align: right; }
-  .pi-value.accent { color: var(--primary); }
+  .pi-value.accent { color: #fff; font-weight: 700; }
 
   /* ── SHARED ── */
   section { padding: 5.5rem 2.5rem; }
@@ -117,7 +117,7 @@
   .about-pillars { display: flex; flex-direction: column; gap: 0; border-left: 2px solid var(--border); padding-left: 2rem; }
   .pillar { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
   .pillar:last-child { border-bottom: none; }
-  .pillar-num { font-family: 'Libre Baskerville', serif; font-size: 11px; color: var(--primary); font-style: italic; margin-bottom: 6px; }
+  .pillar-num { font-family: 'Libre Baskerville', serif; font-size: 11px; color: var(--accent); font-style: italic; margin-bottom: 6px; }
   .pillar-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 5px; }
   .pillar-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
 
@@ -125,12 +125,12 @@
   #capabilities { background: var(--bg-alt); }
   .cap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); }
   .cap-card { background: #fff; padding: 2rem 1.75rem; border-top: 3px solid transparent; transition: border-color 0.2s, transform 0.2s; }
-  .cap-card:hover { border-top-color: var(--primary); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-  .cap-num { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 12px; color: var(--primary); margin-bottom: 0.75rem; }
+  .cap-card:hover { border-top-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .cap-num { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 12px; color: var(--accent); margin-bottom: 0.75rem; }
   .cap-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
   .cap-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
   .cap-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
-  .cap-tag { font-size: 10px; padding: 3px 10px; background: var(--primary-pale); color: var(--primary); font-weight: 600; border-radius: 2px; }
+  .cap-tag { font-size: 10px; padding: 3px 10px; background: var(--accent-pale); color: var(--accent); font-weight: 600; border-radius: 2px; }
 
   /* ── CAP STATEMENT ── */
   #cap-online { background: var(--primary); }
@@ -146,7 +146,7 @@
   .naics-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; }
   .naics-row { display: flex; justify-content: space-between; padding: 9px 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center; }
   .naics-row:last-child { border-bottom: none; }
-  .naics-code { color: var(--primary); font-weight: 700; font-family: monospace; font-size: 13px; }
+  .naics-code { color: rgba(255,255,255,0.8); font-weight: 700; font-family: monospace; font-size: 13px; }
   .naics-name { font-size: 12px; color: rgba(255,255,255,0.4); text-align: right; }
 
   /* ── CONTRACTS ── */
@@ -178,7 +178,7 @@
   .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
   .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; font-size: 14px; color: var(--text-muted); }
   .contact-detail strong { color: var(--text); font-weight: 700; }
-  .contact-form-wrap { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--primary); padding: 2.5rem; border-radius: 8px; }
+  .contact-form-wrap { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; border-radius: 8px; }
   .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); font-weight: 700; }
@@ -328,7 +328,7 @@
   <div class="section-inner fade-in">
     <div class="section-head">
       <div>
-        <div class="section-eyebrow" style="color:var(--primary);"><span style="background:var(--primary);width:28px;height:1px;display:inline-block;"></span>Capabilities Statement</div>
+        <div class="section-eyebrow" style="color:rgba(255,255,255,0.8);"><span style="background:rgba(255,255,255,0.6);width:28px;height:1px;display:inline-block;"></span>Capabilities Statement</div>
         <h2 class="section-h2" style="color:#fff;">Full Capability Profile</h2>
       </div>
     </div>
@@ -348,8 +348,8 @@
         <div class="naics-row"><span class="naics-code">541519</span><span class="naics-name">Other Computer-Related Services</span></div>
         <div class="naics-row"><span class="naics-code">541690</span><span class="naics-name">Scientific/Technical Consulting</span></div>
         <div class="naics-row"><span class="naics-code">518210</span><span class="naics-name">Data Processing &amp; Hosting</span></div>
-        <div class="naics-row" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;"><span style="font-size:11px;color:rgba(255,255,255,0.25);">CAGE Code</span><span style="color:var(--primary);font-family:monospace;font-weight:700;">XXXXX</span></div>
-        <div class="naics-row"><span style="font-size:11px;color:rgba(255,255,255,0.25);">UEI</span><span style="color:var(--primary);font-family:monospace;font-weight:700;">XXXXXXXXXXXXXXXX</span></div>
+        <div class="naics-row" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:12px;"><span style="font-size:11px;color:rgba(255,255,255,0.25);">CAGE Code</span><span style="color:rgba(255,255,255,0.8);font-family:monospace;font-weight:700;">XXXXX</span></div>
+        <div class="naics-row"><span style="font-size:11px;color:rgba(255,255,255,0.25);">UEI</span><span style="color:rgba(255,255,255,0.8);font-family:monospace;font-weight:700;">XXXXXXXXXXXXXXXX</span></div>
       </div>
     </div>
   </div>
@@ -423,7 +423,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div style="display:flex;align-items:center;gap:14px;">
-          <div style="width:40px;height:40px;border:2px solid var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--primary);">CI</div>
+          <div style="width:40px;height:40px;border:2px solid rgba(255,255,255,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:rgba(255,255,255,0.9);">CI</div>
           <div><div style="font-family:'Libre Baskerville',serif;font-size:15px;color:#fff;">Core Interface</div><div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1.5px;text-transform:uppercase;">Federal IT Solutions</div></div>
         </div>
         <p>Providing cleared IT talent, software development, and cybersecurity services to the federal government since 2014.</p>
